@@ -23,36 +23,29 @@ double calcItem(double x, uint16_t n) {
 }
 
 double expn(double x, uint16_t count) {
-    double total_sum = 1.0;
-    double current_item = 1.0;
-
-    for (uint16_t step = 1; step < count; ++step) {
-        current_item *= (x / step);
-        total_sum += current_item;
+    double total_sum = 0.0;
+    for (uint16_t i = 0; i <= count; ++i) {
+        total_sum += calcItem(x, i);
     }
     return total_sum;
 }
 
 double sinn(double x, uint16_t count) {
-    double total_sum = x;
-    double current_item = x;
-    double x_squared = x * x;
-
-    for (uint16_t step = 1; step < count; ++step) {
-        current_item *= (-x_squared) / ((2 * step) * (2 * step + 1));
-        total_sum += current_item;
+    double total_sum = 0.0;
+    for (uint16_t i = 1; i <= count; ++i) {
+        double sign = pown(-1.0, i - 1);
+        uint16_t power = 2 * i - 1;
+        total_sum += sign * calcItem(x, power);
     }
     return total_sum;
 }
 
 double cosn(double x, uint16_t count) {
-    double total_sum = 1.0;
-    double current_item = 1.0;
-    double x_squared = x * x;
-
-    for (uint16_t step = 1; step < count; ++step) {
-        current_item *= (-x_squared) / ((2 * step - 1) * (2 * step));
-        total_sum += current_item;
+    double total_sum = 0.0;
+    for (uint16_t i = 1; i <= count; ++i) {
+        double sign = pown(-1.0, i - 1);
+        uint16_t power = 2 * i - 2;
+        total_sum += sign * calcItem(x, power);
     }
     return total_sum;
 }
